@@ -8,7 +8,7 @@ A full-featured Blog Management System built with Laravel and MySQL.
 
 - Website: https://blog-management-system-production-8205.up.railway.app/blogs
 - Admin Panel: https://blog-management-system-production-8205.up.railway.app/admin/login
-- GitHub: https://github.com/YOUR_USERNAME/blog-management-system
+- GitHub: https://github.com/sujith-333/blog-management-system
 
 ---
 
@@ -61,7 +61,7 @@ A full-featured Blog Management System built with Laravel and MySQL.
 
 **Step 1 - Clone the repository**
 
-    git clone https://github.com/YOUR_USERNAME/blog-management-system.git
+    git clone https://github.com/sujith-333/blog-management-system.git
 
 **Step 2 - Install dependencies**
 
