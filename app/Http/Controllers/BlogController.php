@@ -8,12 +8,25 @@ use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
-    public function index()
-    {
-        $blogs      = Blog::with('category')->latest()->get();
-        $categories = Category::all();
-        return view('blogs.index', compact('blogs', 'categories'));
-    }
+            public function index(Request $request)
+            {
+                $query      = Blog::with('category');
+                $categories = Category::all();
+
+                if ($request->category) {
+                    $query->where('category_id', $request->category);
+                }
+
+                if ($request->search) {
+                    $query->where(function($q) use ($request) {
+                        $q->where('title', 'like', '%' . $request->search . '%')
+                        ->orWhere('short_description', 'like', '%' . $request->search . '%');
+                    });
+                }
+
+                $blogs = $query->latest()->get();
+                return view('blogs.index', compact('blogs', 'categories'));
+            }
 
     public function show($id)
     {
