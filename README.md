@@ -1,59 +1,183 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# BlogYaari - Blog Management System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A full-featured Blog Management System built with Laravel and MySQL.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Live Links
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- Website: https://blog-management-system-production-8205.up.railway.app/blogs
+- Admin Panel: https://blog-management-system-production-8205.up.railway.app/admin/login
+- GitHub: https://github.com/YOUR_USERNAME/blog-management-system
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## Admin Credentials
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+- Email: admin@blog.com
+- Password: admin123
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+## Features
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### User Side
+- Blog listing page with all blogs fetched dynamically from database
+- Hero section with search bar
+- AJAX filter by category without page reload
+- AJAX filter by date without page reload
+- Live search without page reload
+- Blog detail page with full content
+- Related blogs sidebar
+- Category widget in sidebar
+- Responsive design for mobile and laptop
+- Copy link share button
 
-### Premium Partners
+### Admin Side
+- Secure admin login with session
+- Dashboard with stats cards
+- Add new blog with rich text editor
+- Edit existing blog
+- Delete blog with confirmation
+- Image upload with preview
+- Search and filter blogs in dashboard
+- Writing tips sidebar
+- Blog info card with metadata
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+---
 
-## Contributing
+## Tech Stack
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- Backend: PHP / Laravel
+- Database: MySQL
+- Frontend: HTML, CSS Responsive
+- JavaScript: jQuery and AJAX
+- Hosting: Railway
+- Version Control: GitHub
 
-## Code of Conduct
+---
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Local Setup Steps
 
-## Security Vulnerabilities
+**Step 1 - Clone the repository**
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+    git clone https://github.com/YOUR_USERNAME/blog-management-system.git
 
-## License
+**Step 2 - Install dependencies**
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+    composer install
+
+**Step 3 - Copy environment file**
+
+    cp .env.example .env
+
+**Step 4 - Generate application key**
+
+    php artisan key:generate
+
+**Step 5 - Set database credentials in .env file**
+
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=blog_system
+    DB_USERNAME=root
+    DB_PASSWORD=
+
+**Step 6 - Run migrations**
+
+    php artisan migrate
+
+**Step 7 - Seed the database**
+
+    php artisan db:seed
+
+**Step 8 - Start the server**
+
+    php artisan serve
+
+**Step 9 - Open in browser**
+
+    http://localhost:8000/blogs
+
+---
+
+## AJAX Filter Implementation
+
+The filter works without page reload using jQuery AJAX:
+
+- User selects category or date or types in search box
+- jQuery sends POST request to /blogs/filter route
+- Laravel queries database with filters applied
+- Laravel returns filtered blog cards as HTML partial
+- jQuery updates the blog listing section instantly
+- No full page reload at any point
+
+---
+
+## Image Guidelines
+
+- Ideal size: 1200 x 630 pixels
+- Aspect ratio: 16:9
+- Max file size: 2MB
+- Accepted formats: JPG, PNG, GIF
+
+---
+
+## Project Structure
+
+- app
+    - Http
+        - Controllers
+            - BlogController.php
+            - Admin
+                - AdminAuthController.php
+                - AdminBlogController.php
+        - Middleware
+            - AdminMiddleware.php
+    - Models
+        - Blog.php
+        - Category.php
+- database
+    - migrations
+    - seeders
+        - DatabaseSeeder.php
+- resources
+    - views
+        - layouts
+            - app.blade.php
+            - admin.blade.php
+        - blogs
+            - index.blade.php
+            - show.blade.php
+            - partials
+                - blog-list.blade.php
+        - admin
+            - login.blade.php
+            - dashboard.blade.php
+            - blogs
+                - create.blade.php
+                - edit.blade.php
+- routes
+    - web.php
+- Procfile
+- nixpacks.toml
+- README.md
+
+---
+
+## Database Tables
+
+- users - Admin login credentials
+- categories - Blog categories like Admit Card and Result
+- blogs - All blog posts with title, content, image, category
+
+---
+
+## Assignment Details
+
+- Role: PHP / Laravel Developer Intern
+- Company: JobYaari
+- Assignment Title: Blog Management System with AJAX Filtering
+- Deployment: Railway free hosting
+- Code: GitHub public repository
